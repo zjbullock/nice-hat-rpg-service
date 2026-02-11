@@ -1,8 +1,8 @@
 package resolvers
 
 import (
+	"adventureBotService/models"
 	"context"
-	"lataleBotService/models"
 )
 
 type newUserResolver struct {

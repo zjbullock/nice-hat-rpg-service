@@ -1,6 +1,6 @@
 package models
 
-import "lataleBotService/globals"
+import "adventureBotService/globals"
 
 type JobClass struct {
 	Name             string       `json:"name" firestore:"name"`

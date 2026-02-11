@@ -1,4 +1,4 @@
-module lataleBotService
+module adventureBotService
 
 go 1.22
 

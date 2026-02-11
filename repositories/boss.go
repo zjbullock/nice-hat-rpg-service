@@ -1,10 +1,10 @@
 package repositories
 
 import (
+	"adventureBotService/datasource"
+	"adventureBotService/globals"
+	"adventureBotService/models"
 	"github.com/juju/loggo"
-	"lataleBotService/datasource"
-	"lataleBotService/globals"
-	"lataleBotService/models"
 )
 
 type boss struct {

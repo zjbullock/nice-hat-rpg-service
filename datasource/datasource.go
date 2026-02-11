@@ -1,11 +1,11 @@
 package datasource
 
 import (
+	"adventureBotService/models"
 	. "cloud.google.com/go/firestore"
 	"context"
 	"github.com/juju/loggo"
 	"google.golang.org/api/iterator"
-	"lataleBotService/models"
 	"time"
 )
 
