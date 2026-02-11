@@ -1,10 +1,10 @@
 package services
 
 import (
+	"adventureBotService/globals"
+	"adventureBotService/models"
 	"fmt"
 	"github.com/juju/loggo"
-	"lataleBotService/globals"
-	"lataleBotService/models"
 	"math"
 	"math/rand"
 	"strconv"

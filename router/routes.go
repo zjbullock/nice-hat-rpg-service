@@ -1,7 +1,7 @@
 package router
 
 import (
-	"lataleBotService/handler"
+	"adventureBotService/handler"
 	"net/http"
 )
 

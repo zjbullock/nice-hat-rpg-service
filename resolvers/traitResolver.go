@@ -1,6 +1,6 @@
 package resolvers
 
-import "lataleBotService/models"
+import "adventureBotService/models"
 
 type traitResolver struct {
 	trait models.Trait

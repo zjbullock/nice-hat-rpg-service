@@ -1,5 +1,6 @@
 name: Deploy to Prod
 on: 
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -8,10 +9,10 @@ jobs:
     name: Deploy to Prod
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Go 1.14
-      uses: actions/setup-go@v1
+    - name: Set up Go 1.22.1
+      uses: actions/setup-go@v5.0.0
       with:
-        go-version: 1.14
+        go-version: '1.22.1'
       id: go
 
     - name: Check out code into the Go module directory
@@ -37,11 +38,11 @@ jobs:
     - name: Decode secrets.properties file
       env:
         SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_PROD }}
-      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./credentials.json
+      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
 
     # Optional subfolder directory to save the json file.
     - name: Google Cloud Platform (GCP) CLI - gcloud
-      uses: actions-hub/gcloud@272.0.0
+      uses: actions-hub/gcloud@420.0.0
       env:
         # Project id
         PROJECT_ID: ${{ secrets.GOOGLE_APPLICATION_PROJECT_ID_PROD }}

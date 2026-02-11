@@ -1,18 +1,19 @@
 package services
 
 import (
+	"adventureBotService/globals"
+	"adventureBotService/models"
+	"adventureBotService/repositories"
+	"adventureBotService/utils"
 	"encoding/json"
 	"fmt"
-	"github.com/juju/loggo"
-	"lataleBotService/globals"
-	"lataleBotService/models"
-	"lataleBotService/repositories"
-	"lataleBotService/utils"
 	"math"
 	"math/rand"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/juju/loggo"
 )
 
 type Adventure interface {
@@ -246,7 +247,7 @@ func (a *adventure) CreateParty(id string) (*string, error) {
 		return &message, nil
 	}
 	if checkIfInParty != nil {
-		message := fmt.Sprintf("You are currently in a party!  To leave your current party, first run **/latale party leave**.")
+		message := fmt.Sprintf("You are currently in a party!  To leave your current party, first run **/adventure party leave**.")
 		return &message, nil
 	}
 	checkIfPartyLeader, err := a.party.QueryDocuments(&[]models.QueryArg{
@@ -261,7 +262,7 @@ func (a *adventure) CreateParty(id string) (*string, error) {
 		return &message, nil
 	}
 	if checkIfPartyLeader != nil {
-		message := fmt.Sprintf("You are currently the leader of a party!  To disband your current party, first run **/latale party leave**.")
+		message := fmt.Sprintf("You are currently the leader of a party!  To disband your current party, first run **/adventure party leave**.")
 		return &message, nil
 	}
 	//3.  If user is not currently in a party, create a new party.
@@ -282,7 +283,7 @@ func (a *adventure) CreateParty(id string) (*string, error) {
 		message := fmt.Sprintf("A problem was encountered creating a party.  Sorry for the inconvenience")
 		return &message, nil
 	}
-	message := fmt.Sprintf("**Congratulations**, your party has been created!\nPlease have members join your party by using the \"***/latale party join partycode:%s***\" command to NiceHat.\nTo keep players you do not want to join the party from using the command, please do not post the command publicly", *partyId)
+	message := fmt.Sprintf("**Congratulations**, your party has been created!\nPlease have members join your party by using the \"***/adventure party join partycode:%s***\" command to NiceHat.\nTo keep players you do not want to join the party from using the command, please do not post the command publicly", *partyId)
 	return &message, nil
 }
 
@@ -352,7 +353,7 @@ func (a *adventure) JoinParty(partyId, id string) (*string, error) {
 		message := fmt.Sprintf("A problem was encountered creating a party.  Sorry for the inconvenience")
 		return &message, nil
 	}
-	message := fmt.Sprintf("You have successfully been added to the party!  To leave the party in the future, simply run the command **/latale party leave**")
+	message := fmt.Sprintf("You have successfully been added to the party!  To leave the party in the future, simply run the command **/adventure party leave**")
 	return &message, nil
 }
 
@@ -1460,7 +1461,7 @@ func (a *adventure) GetAdventure(areaId, userId string) (*[]string, *string, err
 	area, err := a.areas.ReadDocument(areaId)
 	if err != nil {
 		a.log.Errorf("error getting area info: %v", err)
-		message := "Could not find an area with that code.  Please be sure to use the codes specified in `/latale adventure arealist`."
+		message := "Could not find an area with that code.  Please be sure to use the codes specified in `/adventure adventure arealist`."
 		return nil, &message, nil
 	}
 	if user.Party != nil {
@@ -2201,13 +2202,13 @@ func (a *adventure) GetBossBattle(bossId, userId string) (*[]string, *string, er
 		return nil, &message, nil
 	}
 	if user.Party == nil {
-		message := "You must be in a party to participate in Boss Fights!  Join a party, or create one using `/latale party create`."
+		message := "You must be in a party to participate in Boss Fights!  Join a party, or create one using `/adventure party create`."
 		return nil, &message, nil
 	}
 	boss, err := a.boss.ReadDocument(bossId)
 	if err != nil {
 		a.log.Errorf("error getting area info: %v", err)
-		message := "Could not find a boss with that name.  Please be sure to use the names specified in `/latale boss list`."
+		message := "Could not find a boss with that name.  Please be sure to use the names specified in `/adventure boss list`."
 		return nil, &message, nil
 	}
 	partyMembers, err := a.generatePartyBlob(user)

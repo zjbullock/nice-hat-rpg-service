@@ -1,11 +1,11 @@
 package repositories
 
 import (
+	"adventureBotService/datasource"
+	"adventureBotService/globals"
+	"adventureBotService/models"
+	"adventureBotService/utils"
 	"github.com/juju/loggo"
-	"lataleBotService/datasource"
-	"lataleBotService/globals"
-	"lataleBotService/models"
-	"lataleBotService/utils"
 	"time"
 )
 
