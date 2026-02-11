@@ -8,10 +8,10 @@ jobs:
     name: Deploy to QA
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Go 1.22.1
-      uses: actions/setup-go@v5.0.0
+    - name: Set up Go 1.26.0
+      uses: actions/setup-go@v6.2.0
       with:
-        go-version: '1.22.1'
+        go-version: '1.26.0'
       id: go
 
     - name: Check out code into the Go module directory
