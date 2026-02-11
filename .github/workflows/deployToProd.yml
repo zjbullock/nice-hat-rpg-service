@@ -33,7 +33,7 @@ jobs:
         # file
         FILE_NAME: "config.json"
         # creds
-        FILE_BASE64: ${{ secrets.APP_CONFIG_PROD }}
+        FILE_BASE64: ${{ secrets.FIREBASE_CREDENTIALS_PROD }}
         
 #    - name: Decode secrets.properties file
 #      env:
