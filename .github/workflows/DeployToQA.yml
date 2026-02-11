@@ -27,21 +27,21 @@ jobs:
       run: go build -v .
 
     - name: Create Config File
-      uses: finnp/create-file-action@1.0.0
+      uses: finnp/create-file-action@2.0.0
       env:
         # file
         FILE_NAME: "config.json"
         # creds
-        FILE_DATA: ${{ secrets.APP_CONFIG_QA }}
+        FILE_BASE64: ${{ secrets.APP_CONFIG_QA }}
         
-    - name: Decode secrets.properties file
-      env:
-        SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_QA }}
-      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
+#    - name: Decode secrets.properties file
+#      env:
+#        SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_QA }}
+#      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
 
     # Optional subfolder directory to save the json file.
     - name: Google Cloud Platform (GCP) CLI - gcloud
-      uses: actions-hub/gcloud@272.0.0
+      uses: actions-hub/gcloud@420.0.0
       env:
         # Project id
         PROJECT_ID: ${{ secrets.GOOGLE_APPLICATION_PROJECT_ID_QA }}
