@@ -1,8 +1,8 @@
 package router
 
 import (
+	"adventureBotService/handler"
 	"github.com/gorilla/mux"
-	"lataleBotService/handler"
 )
 
 func NewRouter(handler *handler.Funcs) *mux.Router {

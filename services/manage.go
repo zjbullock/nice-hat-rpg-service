@@ -1,12 +1,12 @@
 package services
 
 import (
+	"adventureBotService/globals"
+	"adventureBotService/models"
+	"adventureBotService/repositories"
+	"adventureBotService/utils"
 	"fmt"
 	"github.com/juju/loggo"
-	"lataleBotService/globals"
-	"lataleBotService/models"
-	"lataleBotService/repositories"
-	"lataleBotService/utils"
 	"math"
 	"strconv"
 	"strings"

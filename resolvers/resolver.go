@@ -1,11 +1,11 @@
 package resolvers
 
 import (
+	"adventureBotService/models"
+	"adventureBotService/services"
 	"context"
 	"fmt"
 	"github.com/juju/loggo"
-	"lataleBotService/models"
-	"lataleBotService/services"
 	"sort"
 	"strconv"
 	"strings"

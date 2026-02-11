@@ -1,9 +1,9 @@
 package resolvers
 
 import (
+	"adventureBotService/models"
 	"context"
 	"fmt"
-	"lataleBotService/models"
 	"sort"
 )
 

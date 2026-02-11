@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"lataleBotService/models"
+	"adventureBotService/models"
 	"strconv"
 )
 
