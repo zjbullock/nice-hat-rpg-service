@@ -1,4 +1,4 @@
 # app.yaml
 #service: latale-bot
-runtime: go114
-env: standard
+runtime: go125
+#env: flex
