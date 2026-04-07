@@ -35,10 +35,10 @@ jobs:
         # creds
         FILE_BASE64: ${{ secrets.FIREBASE_CREDENTIALS_PROD }}
         
-    - name: Decode secrets.properties file
-      env:
-        SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_PROD }}
-      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
+#    - name: Decode secrets.properties file
+#      env:
+#        SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_PROD }}
+#      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
 
     # Optional subfolder directory to save the json file.
     - name: Google Cloud Platform (GCP) CLI - gcloud
