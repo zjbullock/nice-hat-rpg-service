@@ -10,7 +10,7 @@ import (
 	"adventureBotService/services"
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"strings"
@@ -42,18 +42,36 @@ func init() {
 		l.Errorf("error opening credentials file: %v", err)
 		return
 	}
+
 	l.Errorf("configFile: %v", configFile)
-	defer configFile.Close()
+
 	var configMap map[string]interface{}
-	byteValue, err := ioutil.ReadAll(configFile)
-	json.Unmarshal([]byte(byteValue), &configMap)
+
+	byteValue, err := io.ReadAll(configFile)
+
+	configFileErr := configFile.Close()
+
+	if configFileErr != nil {
+		l.Errorf("error closing configFile: %v", err)
+	}
+
+	unmarshalError := json.Unmarshal([]byte(byteValue), &configMap)
+
+	if unmarshalError != nil {
+		l.Errorf("error unmarshalling config: %v", unmarshalError)
+	}
+
 	l.Debugf("configMap: %v", configMap)
+
 	client, err := NewClient(ctx, configMap["project_id"].(string), option.WithCredentialsFile("./config.json"), option.WithGRPCConnectionPool(10))
+
 	if err != nil {
 		l.Errorf("error initializing Fire Store client with projectId: %s. Received error: %v", configMap["project_id"].(string), err)
 		return
 	}
+
 	ds = datasource.NewDataSource(l, ctx, client)
+
 	repos := struct {
 		area      repositories.AreasRepository
 		classes   repositories.ClassRepository
