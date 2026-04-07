@@ -23,6 +23,7 @@ jobs:
             curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
             dep ensure
         fi
+
     - name: Build
       run: go build -v .
 
@@ -34,10 +35,10 @@ jobs:
         # creds
         FILE_BASE64: ${{ secrets.FIREBASE_CREDENTIALS_QA }}
         
-#    - name: Decode secrets.properties file
-#      env:
-#        SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_QA }}
-#      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
+    - name: Decode secrets.properties file
+      env:
+        SECRETS_PROPERTIES: ${{ secrets.FIREBASE_CREDENTIALS_QA }}
+      run: echo "$SECRETS_PROPERTIES" | base64 -d > ./config.json
 
     # Optional subfolder directory to save the json file.
     - name: Google Cloud Platform (GCP) CLI - gcloud
