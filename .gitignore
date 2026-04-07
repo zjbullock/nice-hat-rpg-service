@@ -1,6 +1,6 @@
 credentials-prod.json
 config.json
-config.json
+config-qa.json
 appengineauth.json
 appengineauthqa.json
 origins.json
